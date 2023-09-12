@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Details from './components/PrintDetail';
+import FormDetail from './components/Form';
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ContextAPI from './Contex/ContexAPI';
+import FooterGroup from './components/Foot';
+import React, { useState } from 'react';
+// import NewLogic from "./components/NewLogic"
 function App() {
+  const [setme, setsetme] = useState(true);
+  const [countdata, setCountdata] = useState(0);
+  function tog1() {
+    if (setme===true) {
+      setsetme(false)
+    }
+  }
+  function tog2() {
+    if (setme===false) {
+      setsetme(true)
+    }
+  }
+  function data(params) {
+    // console.log(params);
+    setCountdata(params);
+
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <ContextAPI>
+      {setme ? <Details /> :
+      <FormDetail countdatas={countdata} />}
+      </ContextAPI>
+      <FooterGroup data={data} show={tog1} hide={tog2}/>
+       {/* <NewLogic/> */}
+    </React.Fragment>
   );
 }
 
