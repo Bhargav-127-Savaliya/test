@@ -1,0 +1,18 @@
+let mergedData = [];
+
+for (let i = 0; i < RenderingTime; i++) {
+  const formData = {
+    ...companyData,
+    ...companyData2,
+  };
+  mergedData.push(formData);
+}
+
+// Convert mergedData to an array of arrays, where each inner array contains a single value
+const csvData = mergedData.map(formData => Object.values(formData).join(','));
+
+const csvLink = {
+  filename: "file.csv",
+  data: csvData,
+};
+
